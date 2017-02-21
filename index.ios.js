@@ -20,16 +20,13 @@ import {
   applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
-import reducer from './reducer';
-import keyMirror from 'keymirror';
 import { AsyncStorage } from 'react-native';
 
 
 
-export default class uberPrice extends Component {
+export default class sampleapp extends Component {
   constructor(props) {
       super(props);
-      this.props.dispatch({type: 'TEST'});
       this.state = {
           currLong: '',
           currLat: '',
@@ -96,24 +93,23 @@ function findPrice(state) {
     console.log('price was logged')
 }
 
-const TYPES = keyMirror({
-    GET_PRICE: null
-})
-
+/*
 export function GET(start_latitude, start_longitude, end_latitude, end_longitude, obj) {
     let requestObj = {
-        prices: {
-            Authorization: Token <sACrAoxNWwC01RNXDUqE4UNvGOwZmNaIGveT4zJY>,
-            Accept-Language: en_US,
-            Content-Type: application/json
+        header: {
+            Authorization: 'Token <sACrAoxNWwC01RNXDUqE4UNvGOwZmNaIGveT4zJY>',
+            'Accept-Language': 'en_US',
+            'Content-Type': 'application/json'
         }
+    }
         
         return fetch(${'https://api.uber.com/v1.2/estimates/price?start_latitude='+{start_latitude}+'&start_longitude='+{start_longitude}+'&end_latitude='+{end_latitude}+'&end_longitude='+{end_longitude}}, requestObj);
-    }
 }
+*/
 
-export function getPrice()
+//export function getPrice()
     
+/*
 export default function Price(state = initialState, action) {
   let stateJS = state.toJS(); // turn the Map back to a JS object
 
@@ -128,6 +124,8 @@ export default function Price(state = initialState, action) {
       return state;
   }
 }
+
+*/
 
 const onFindPriceButtonPress = () => {
     findPrice(this.state)
@@ -176,7 +174,6 @@ const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 // A simple store
 const store = createStoreWithMiddleware(combineCurrAndDestReducer);
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -210,4 +207,4 @@ const styles = StyleSheet.create({
   }
 });
 
-AppRegistry.registerComponent('uberPrice', () => uberPrice);
+AppRegistry.registerComponent('sampleapp', () => sampleapp);
