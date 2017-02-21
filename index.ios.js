@@ -19,11 +19,17 @@ import {
   combineReducers, 
   applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import {Provider} from 'react-redux';
+import reducer from './reducer';
+import keyMirror from 'keymirror';
+import { AsyncStorage } from 'react-native';
 
 
-export default class sampleapp extends Component {
+
+export default class uberPrice extends Component {
   constructor(props) {
       super(props);
+      this.props.dispatch({type: 'TEST'});
       this.state = {
           currLong: '',
           currLat: '',
@@ -90,6 +96,39 @@ function findPrice(state) {
     console.log('price was logged')
 }
 
+const TYPES = keyMirror({
+    GET_PRICE: null
+})
+
+export function GET(start_latitude, start_longitude, end_latitude, end_longitude, obj) {
+    let requestObj = {
+        prices: {
+            Authorization: Token <sACrAoxNWwC01RNXDUqE4UNvGOwZmNaIGveT4zJY>,
+            Accept-Language: en_US,
+            Content-Type: application/json
+        }
+        
+        return fetch(${'https://api.uber.com/v1.2/estimates/price?start_latitude='+{start_latitude}+'&start_longitude='+{start_longitude}+'&end_latitude='+{end_latitude}+'&end_longitude='+{end_longitude}}, requestObj);
+    }
+}
+
+export function getPrice()
+    
+export default function Price(state = initialState, action) {
+  let stateJS = state.toJS(); // turn the Map back to a JS object
+
+  switch (action.type) {
+    case `${TYPES.GET_PRICE}_REQUEST`: // perform string concatenation with the variable and the string "_REQUEST"
+      return state;
+    case `${TYPES.GET_PRICE}_SUCCESS`:
+      return prices.estimate;
+    case `${TYPES.GET_PRICE}_FAILURE`:
+      return state;
+    default:
+      return state;
+  }
+}
+
 const onFindPriceButtonPress = () => {
     findPrice(this.state)
 };
@@ -130,12 +169,12 @@ const destReducer = function (state = {}, action) {
 const combineCurrAndDestReducer = combineReducers({
     curr: currReducer,
     dest: destReducer
-})
+});
 
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore)
+const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
 // A simple store
-const store = createStoreWithMiddleware(combineCurrAndDestReducer)
+const store = createStoreWithMiddleware(combineCurrAndDestReducer);
 
 
 const styles = StyleSheet.create({
@@ -171,4 +210,4 @@ const styles = StyleSheet.create({
   }
 });
 
-AppRegistry.registerComponent('sampleapp', () => sampleapp);
+AppRegistry.registerComponent('uberPrice', () => uberPrice);
