@@ -121,7 +121,7 @@ export default function Price(state = initialState, action) {
     case `${TYPES.GET_PRICE}_REQUEST`: // perform string concatenation with the variable and the string "_REQUEST"
       return state;
     case `${TYPES.GET_PRICE}_SUCCESS`:
-      return prices.estimate;
+      return 'The distance is '+prices.distance+ ' and the price estimate is '+prices.estimate+'.';
     case `${TYPES.GET_PRICE}_FAILURE`:
       return state;
     default:
