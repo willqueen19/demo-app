@@ -23,8 +23,8 @@ export default {
   windowWidthThreeQuarters: window.width * 0.75,
   windowWidthNineTenths: window.width * 0.9,
 
-  apiUrl: ,
-  apiKey: 'YOUR_API_KEY', // add your API key here
+  //apiUrl: ,
+  //apiKey: 'YOUR_API_KEY', // add your API key here
 
   /*
    * Create your own API key by signing up for newsapi.org: https://newsapi.org/

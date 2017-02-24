@@ -1,104 +1,56 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+'use strict'
 
-import React, { Component } from 'react';
+import React from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  Text,
-  TextInput,
-  Button,
   View,
-  Alert
+  Text
 } from 'react-native';
 
+import {
+  Router,
+  Scene,
+  ActionConst
+} from 'react-native-router-flux';
 
-const onCurrentLocButtonPress = () => {
-    Alert.alert('Location logged');
-};
+import ReactDOM from 'react-dom';
 
-export default class sampleapp extends Component {
-  constructor(props) {
-      super(props);
-      this.state = {
-          destLong: '',
-          destLat: ''
-      }
-  }
-    
-  render() {
+import {
+  Provider
+} from 'react-redux';
+
+import store from './store';
+//import styles from './styles';
+
+/*
+ * Import top level containers
+ */
+
+import sampleapp from './components/uber.js';
+
+export default function native() {
+  const app = () => {
     return (
-      <View style={styles.container}>
-        
-        <Text style={styles.title}>
-          UBER EVERYWHERE
-        </Text>
-        <Text style={styles.welcome}>
-          See how expensive your ride will be
-        </Text>
-        <Button title="Log current location"
-                color="#841584"
-                onPress={onCurrentLocButtonPress}
-        />
-        <TextInput style={styles.destination}
-            editable={true}
-            placeholder='Destination - Longitude'
-            onChangeText={(destLong) => this.setState({destLong})}  
-        />
-        <TextInput style={styles.destination}
-            editable={true}
-            placeholder='Destination - Latitude'
-            onChangeText={(destLat) => this.setState({destLat})}
+      <Provider store={ store }>
+        <Router>
 
-        />
-        <Button title="Here's how much you're out, mate"
-                color="#841584"
-                //onPress=""
-        />
-      </View>
-    );
+          {/* Root */}
+          <Scene key='root'>
+
+            <Scene
+              key='news'
+              component={ sampleapp }
+              type={ ActionConst.REPLACE }
+              initial={ true }
+              />
+
+          </Scene>
+
+        </Router>
+      </Provider>
+    )
   }
+
+  AppRegistry.registerComponent('native', () => app);
 }
-
-function setCurrentLoc (info1, info2) {
-    return {
-        type: 'TAKE_CURRENT_LOC',
-        currLong: currLong,
-        currLat: currLat
-    }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  title: {
-    fontSize: 40,
-    textAlign: 'center',    
-    margin: 10
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 10,
-  },
-  destination: {
-      margin: 15,
-      textAlign: 'center'
-      
-  }
-});
-
-AppRegistry.registerComponent('uber', () => uber);

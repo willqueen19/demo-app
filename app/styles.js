@@ -8,30 +8,39 @@ import {
 import config from '../config'; // source in our configuration files
 
 // Create app-wide styling
+
 const AppStyles = StyleSheet.create({
-
-  navbar: { // create the styles for our navbar.
+  container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
-    borderBottomWidth: 0,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
   },
-
-  logo: { // create the styles for our logo
-    maxWidth: config.windowWidthHalf,
-    resizeMode: 'contain',
-    alignSelf: 'center',
-    ...Platform.select({ // use our Platform configuration to add styles
-      ios: { // styling for iOS
-        maxHeight: 55,
-        marginTop: 20
-      },
-      android: { // styling for Android
-        maxHeight: 50,
-        marginTop: 10
-      }
-    })
+  title: {
+    fontSize: 40,
+    textAlign: 'center',    
+    margin: 10
   },
-
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 10,
+  },
+  destination: {
+      margin: 15,
+      height: 20,
+      textAlign: 'center',
+      borderColor: 'gray' 
+  },
+  button: {
+    
+  }
 });
 
 // export the file for usage
