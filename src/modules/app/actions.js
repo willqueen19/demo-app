@@ -1,12 +1,12 @@
 'use strict'
 
 //import config  from '../../config';
+import GET from '../api/uberapi'
 import * as types from './actionTypes'
 
 /*
  * Activate fetch action
  */
-
 
 /*
 export function GET(endpoint, obj) {
@@ -22,7 +22,7 @@ export function GET(endpoint, obj) {
 }
 */
 
-export const appInit = (dispatch, config) => {
+export function appInit(dispatch, config) {
   return {
     type: types.APP_INIT,
     dispatch,
@@ -30,9 +30,9 @@ export const appInit = (dispatch, config) => {
   }
 }
 
-export const fetchPrice = (location) => {
+export function fetchPrice(location) {
   return {
     type: types.FETCH_PRICE,
-
+    promise: GET(location)
   }
 }
