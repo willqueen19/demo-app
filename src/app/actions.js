@@ -1,12 +1,14 @@
 'use strict'
 
-import config  from '../../config';
+//import config  from '../../config';
+import * as types from './actionTypes'
 
 /*
  * Activate fetch action
  */
 
 
+/*
 export function GET(endpoint, obj) {
     let requestObj = {
         header: {
@@ -17,4 +19,12 @@ export function GET(endpoint, obj) {
     }
 
     return fetch(`https://api.uber.com/v1.2/estimates/${endpoint}, requestObj);
+}
+*/
+
+export const fetchPrice = (location) => {
+  return {
+    type: types.FETCH_PRICE,
+    
+  }
 }
