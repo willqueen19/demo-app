@@ -2,22 +2,24 @@
 
 import { createStore, applyMiddleware, compose } from "redux"
 import thunkMiddleware from "redux-thunk"
-import createLogger from "redux-logger"
+//import createLogger from "redux-logger"
 import createSagaMiddleware from 'redux-saga'
 import devTools from 'remote-redux-devtools'
 
-import sagas from '../sagas'
-import rootReducer from "../reducers"
-import realmMiddleware from "./realm-middleware"
+import sagas from '../modules/app/sagas'
+import rootReducer from '../modules/app/reducer'
+import promiseMiddleware from './promise-middleware'
+//import realmMiddleware from "./realm-middleware"
 
 const sagaMiddleware = createSagaMiddleware()
-const loggerMiddleware = createLogger()
+//const loggerMiddleware = createLogger()
 
 const createStoreWithMiddleware = compose(applyMiddleware(
   thunkMiddleware,
 //  loggerMiddleware,
   sagaMiddleware,
-  realmMiddleware,
+  //realmMiddleware,
+  promiseMiddleware
 ),
 devTools())(createStore);
 

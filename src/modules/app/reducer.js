@@ -1,4 +1,4 @@
-import TYPES from '../types';
+import * as types from './actionTypes';
 import { AsyncStorage } from 'react-native';
 import { combineReducers } from 'redux';
 
@@ -6,7 +6,7 @@ const initState = {}
 
 function getPriceReducer(state = initState, action) {
     switch (action.type) {
-      case TYPES.FETCH_PRICE:
+      case types.FETCH_PRICE:
         return {
           ...state,
           currLong: action.currLong,
@@ -19,8 +19,8 @@ function getPriceReducer(state = initState, action) {
     }
 }
 
-const rootReducers = combineReducers({
-    getPriceReducer,
+const rootReducer = combineReducers({
+    getPriceReducer
 })
 
-export default rootReducers;
+export default rootReducer

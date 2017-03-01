@@ -22,9 +22,17 @@ export function GET(endpoint, obj) {
 }
 */
 
+export const appInit = (dispatch, config) => {
+  return {
+    type: types.APP_INIT,
+    dispatch,
+    config
+  }
+}
+
 export const fetchPrice = (location) => {
   return {
     type: types.FETCH_PRICE,
-    
+
   }
 }

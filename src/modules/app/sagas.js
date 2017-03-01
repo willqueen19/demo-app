@@ -1,5 +1,5 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
-import uberapi from '../action/uberapi.js' //edit this before finishing
+import uberapi from '../api/index.js' //edit this before finishing
 
 
 
@@ -22,4 +22,4 @@ function* mySagas() {
     yield takeEvery('FETCH_PRICE_REQUESTED', fetchPrice);
 }
 
-export default mySaga;
+export default mySagas;

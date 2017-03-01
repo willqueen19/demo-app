@@ -20,7 +20,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 //import store from '../store/index.js';
 
-class sampleapp extends Component {
+class Uber extends Component {
   constructor(props) {
       super(props);
       this.state = {
@@ -99,7 +99,7 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(sampleapp);
+export default connect(mapStateToProps)(Uber);
 
 
 const styles = StyleSheet.create({

@@ -1,10 +1,5 @@
 'use strict'
 
-//import sampleapp from '../components/uber.js'
-import {
-  GET,
-} from './index.js';
-import TYPES from '../types/index.js';
 
 /*
 export function fetchPrice(source, price) {
@@ -24,7 +19,7 @@ export function fetchPrice(source, price) {
 
 */
 
-export function fetchParams(location) "{
+export function fetchParams(location) {
   var url = `price?start_latitude=${start_latitude}&start_longitude=${start_longitude}&end_latitude=${end_latitude}&end_longitude=${end_longitude}`;
   return url;
 }

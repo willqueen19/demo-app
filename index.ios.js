@@ -2,7 +2,7 @@
 
 import React, { AppRegistry } from 'react-native';
 //import sampleapp from './app/components/uber.js';
-import app from './app/root.js';
+import Root from './src/root';
 
 
-AppRegistry.registerComponent('sampleapp', () => app);
+AppRegistry.registerComponent('sampleapp', () => Root);
