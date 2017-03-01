@@ -1,9 +1,10 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
-import uberapi from '../api/index.js' //edit this before finishing
+import uberapi from '../api/index.js'  //edit this before finishing
+import actions from './actions'
 
 
 
-function* fetchPrice(action) {
+function* fetchPriceSaga(action) {
     try {
       const price = yield call(Api.fetchPrice, action.state);
       yield put({
@@ -19,7 +20,7 @@ function* fetchPrice(action) {
 }
 
 function* mySagas() {
-    yield takeEvery('FETCH_PRICE_REQUESTED', fetchPrice);
+    yield takeEvery('FETCH_PRICE_REQUESTED', fetchPriceSaga);
 }
 
 export default mySagas;

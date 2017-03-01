@@ -21,7 +21,7 @@ export function fetchPrice(source, price) {
 
 const server_token = 'sACrAoxNWwC01RNXDUqE4UNvGOwZmNaIGveT4zJY'
 
-export function GET(location) {
+export function GET(source) {
 
   const start_latitude  = source.state.currLat;
   const start_longitude = source.state.currLong;
