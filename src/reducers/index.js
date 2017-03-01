@@ -6,7 +6,7 @@ const initState = {}
 
 function getPriceReducer(state = initState, action) {
     switch (action.type) {
-      case 'GET_PRICE':
+      case TYPES.FETCH_PRICE:
         return {
           ...state,
           currLong: action.currLong,

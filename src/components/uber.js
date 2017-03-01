@@ -16,9 +16,11 @@ import thunk from 'redux-thunk';
 import {Provider, dispatch} from 'react-redux';
 import { AsyncStorage } from 'react-native';
 import { AppStyles } from '../styles.js'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
+//import store from '../store/index.js';
 
-
-export default class sampleapp extends Component {
+class sampleapp extends Component {
   constructor(props) {
       super(props);
       this.state = {
@@ -78,12 +80,27 @@ export default class sampleapp extends Component {
         <Button style={styles.button}
                 title="Here's how much you're out"
                 color="#841584"
-                onPress={() => dispatch({type: 'FETCH_PRICE', payload: this.state})}
+                onPress={() => {
+                  this.props.dispatch({type: 'FETCH_PRICE', payload: this.state})
+                  console.log('dispatching')
+                }}
         />
       </View>
     );
   }
 }
+
+
+
+function mapStateToProps(state) {
+  const { Locs } = state
+  return {
+    Locs
+  }
+}
+
+export default connect(mapStateToProps)(sampleapp);
+
 
 const styles = StyleSheet.create({
   container: {

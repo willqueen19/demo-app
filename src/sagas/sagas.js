@@ -19,7 +19,7 @@ function* fetchPrice(action) {
 }
 
 function* mySagas() {
-    yield takeEvery('USER_FETCH_REQUESTED', fetchPrice);
+    yield takeEvery('FETCH_PRICE_REQUESTED', fetchPrice);
 }
 
 export default mySaga;

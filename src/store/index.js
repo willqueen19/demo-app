@@ -1,12 +1,11 @@
 'use strict'
 
-// bring in these functions from redux to create our app 
+// bring in these functions from redux to create our app
 import { createStore, applyMiddleware } from 'redux';
 // use our thunk to handle async requests
 import thunkMiddleware from 'redux-thunk';
 // bring in the promise middleware we built previously
 import promiseMiddleware from '../middlewares/promise';
-
 // bring in our root reducer
 import rootReducer from '../reducers';
 
