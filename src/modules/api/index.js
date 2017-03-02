@@ -1,3 +1,3 @@
 import * as Uber from './uberapi';
 
-export { Uber };
+export default Uber;

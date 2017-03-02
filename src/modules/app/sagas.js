@@ -1,26 +1,22 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
-import uberapi from '../api/index.js'  //edit this before finishing
-import actions from './actions'
+import Uber from '../api/index'  //edit this before finishing
+import * as actions from './actions'
+import * as types from './actionTypes'
 
-
+const currentPrice = (state) => {
+  return state.price
+}
 
 function* fetchPriceSaga(action) {
-    try {
-      const price = yield call(Api.fetchPrice, action.state);
-      yield put({
-        type: 'FETCH_PRICE_SUCCESS',
-        price: price
-      });
-    } catch (e) {
-      yield put({
-        type: 'FETCH_PRICE_FAILURE',
-        message: e.message
-      });
-    }
+    const response      = yield call(Uber.GET, action.payload);
+    const responseJSON  = yield response.json();
+    const estimatePrice = responseJSON.prices[1].estimate;
+    yield put(actions.returnPrice(estimatePrice))
 }
 
 function* mySagas() {
-    yield takeEvery('FETCH_PRICE_REQUESTED', fetchPriceSaga);
+    console.log('started sagas!')
+    yield takeEvery(types.FETCH_PRICE_REQUEST, fetchPriceSaga);
 }
 
 export default mySagas;

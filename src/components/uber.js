@@ -18,6 +18,7 @@ import { AsyncStorage } from 'react-native';
 import { AppStyles } from '../styles.js'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
+import { fetchPriceRequest } from '../modules/app/actions'
 //import store from '../store/index.js';
 
 class Uber extends Component {
@@ -26,8 +27,8 @@ class Uber extends Component {
       this.state = {
           currLong: 'unknown',
           currLat: 'unknown',
-          destLong: '',
-          destLat: ''
+          destLong: '-123',
+          destLat: '38',
       }
   }
 
@@ -68,12 +69,12 @@ class Uber extends Component {
             {this.state.currLat}
         </Text>
         <TextInput style={styles.destination}
-                   placeholder='Longitude'
+                   placeholder='Destination Longitude'
                    onChangeText={(destLong) => this.setState({destLong})}
                    value={this.state.destLong}
         />
         <TextInput style={styles.destination}
-                   placeholder='Latitude'
+                   placeholder='Destination Latitude'
                    onChangeText={(destLat) => this.setState({destLat})}
                    value={this.state.destLat}
         />
@@ -81,10 +82,14 @@ class Uber extends Component {
                 title="Here's how much you're out"
                 color="#841584"
                 onPress={() => {
-                  this.props.dispatch({type: 'FETCH_PRICE', payload: this.state})
+                  this.props.dispatch(fetchPriceRequest(this.state))
                   console.log('dispatching')
                 }}
         />
+        <Text>
+            <Text style={styles.destination}> It will cost: </Text>
+            {this.props.receivedPrice}
+        </Text>
       </View>
     );
   }
@@ -93,9 +98,8 @@ class Uber extends Component {
 
 
 function mapStateToProps(state) {
-  const { Locs } = state
   return {
-    Locs
+    receivedPrice: state.price
   }
 }
 

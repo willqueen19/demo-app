@@ -15,24 +15,18 @@ const sagaMiddleware = createSagaMiddleware()
 //const loggerMiddleware = createLogger()
 
 const createStoreWithMiddleware = compose(applyMiddleware(
-  thunkMiddleware,
-//  loggerMiddleware,
+  //thunkMiddleware,
+  //loggerMiddleware,
   sagaMiddleware,
   //realmMiddleware,
-  promiseMiddleware
+  //promiseMiddleware
 ),
 devTools())(createStore);
 
 const configureStore = function (initialState: Object = {}): Function {
   let store = createStoreWithMiddleware(rootReducer, initialState);
   sagaMiddleware.run(sagas)
-  if (module.hot) {
-    // Enable hot module replacement for reducers
-    module.hot.accept(() => {
-      const nextRootReducer = require('../reducers').default;
-      store.replaceReducer(nextRootReducer);
-    });
-  }
+
   return store
 };
 
