@@ -19,19 +19,20 @@ import { AppStyles } from '../styles.js'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { fetchPriceRequest } from '../modules/app/actions'
-//import store from '../store/index.js';
 
 class Uber extends Component {
   constructor(props) {
       super(props);
+      // contains the parameters for the state (the current and destination coordinates)
       this.state = {
           currLong: 'unknown',
           currLat: 'unknown',
-          destLong: '-123',
-          destLat: '38',
+          destLong: '',
+          destLat: '',
       }
   }
 
+  //Gathers the user's current location
   componentDidMount() {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -46,6 +47,7 @@ class Uber extends Component {
       )
   }
 
+  //shuts off location tracking once app is terminated
   componentWillUnmount() {
     navigator.geolocation.clearWatch(this.watchID);
   }
@@ -53,12 +55,11 @@ class Uber extends Component {
   render() {
     return (
       <View style={styles.container}>
-
         <Text style={styles.title}>
           UBER EVERYWHERE
         </Text>
         <Text style={styles.welcome}>
-          See how expensive your ride will be
+            See how expensive your ride will be
         </Text>
         <Text>
             <Text style={styles.welcome}> Current Longitude: </Text>
@@ -68,23 +69,27 @@ class Uber extends Component {
             <Text style={styles.welcome}> Current Latitude: </Text>
             {this.state.currLat}
         </Text>
-        <TextInput style={styles.destination}
-                   placeholder='Destination Longitude'
-                   onChangeText={(destLong) => this.setState({destLong})}
-                   value={this.state.destLong}
+        <TextInput
+            style={styles.destination}
+            placeholder='Destination Longitude'
+            onChangeText={(destLong) => this.setState({destLong})}
+            value={this.state.destLong}
         />
-        <TextInput style={styles.destination}
-                   placeholder='Destination Latitude'
-                   onChangeText={(destLat) => this.setState({destLat})}
-                   value={this.state.destLat}
+        <TextInput
+            style={styles.destination}
+            placeholder='Destination Latitude'
+            onChangeText={(destLat) => this.setState({destLat})}
+            value={this.state.destLat}
         />
-        <Button style={styles.button}
-                title="Here's how much you're out"
-                color="#841584"
-                onPress={() => {
-                  this.props.dispatch(fetchPriceRequest(this.state))
-                  console.log('dispatching')
-                }}
+        <Button
+            style={styles.button}
+            title="Here's how much you're out"
+            color="#841584"
+            onPress={() => {
+              //Dispatchs the request for the price to the store, through action type 'FETCH_PRICE_REQUEST'
+              this.props.dispatch(fetchPriceRequest(this.state))
+              console.log('dispatching')
+            }}
         />
         <Text>
             <Text style={styles.destination}> It will cost: </Text>
@@ -94,8 +99,6 @@ class Uber extends Component {
     );
   }
 }
-
-
 
 function mapStateToProps(state) {
   return {
